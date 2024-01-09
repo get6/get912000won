@@ -1,6 +1,6 @@
 "use client"
 
-import { targetTimeState } from "@/app/states/target-time-state"
+import { targetHoursState } from "@/app/states/my-time-state"
 import Badge from "@/app/ui/Badge"
 import NumberInput from "@/app/ui/NumberInput"
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline"
@@ -9,7 +9,7 @@ import { useRecoilState } from "recoil"
 
 export default function TargetTimeInput() {
   const times = [12, 10, 8, 6]
-  const [time, setTime] = useRecoilState(targetTimeState)
+  const [hours, setHours] = useRecoilState(targetHoursState)
 
   return (
     <div className="flex flex-col gap-2">
@@ -28,14 +28,14 @@ export default function TargetTimeInput() {
       <NumberInput
         id="targetTime"
         placeholder="목표 시간"
-        value={time}
+        value={hours}
         onChange={(e) => {
           let value = Number(e.target.value)
 
           if (value < 1) value = 1
           if (value > 12) value = 12
 
-          setTime(value)
+          setHours(value)
         }}
         min={1}
         max={12}

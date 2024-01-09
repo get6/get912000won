@@ -9,6 +9,7 @@ import {
 import { HTMLAttributes } from "react"
 import { Calendar, DateObject } from "react-multi-date-picker"
 import "react-multi-date-picker/styles/colors/yellow.css"
+import "react-multi-date-picker/styles/layouts/mobile.css"
 import { useRecoilState, useRecoilValue } from "recoil"
 
 export default function DatePicker() {
@@ -37,6 +38,7 @@ export default function DatePicker() {
   return (
     today && (
       <Calendar
+        className="rmdp-mobile yellow"
         buttons={false}
         value={selectedDates}
         highlightToday={false}
@@ -63,7 +65,6 @@ export default function DatePicker() {
           `🗓️ ${month}월에 남은 날 ${availableDates.length}일`
         }
         hideYear
-        className="yellow"
         mapDays={changeWeekdayProps}
       />
     )

@@ -1,3 +1,7 @@
+import {
+  remainingHoursState,
+  targetHoursState,
+} from "@/app/states/my-time-state"
 import { atom, selector } from "recoil"
 
 export const todayState = atom<Date>({
@@ -26,7 +30,6 @@ export const availableDatesState = selector<Date[]>({
     const lastDayOfMonth = get(lastDayOfMonthState)
     const daysOfMonth = get(daysOfMonthState)
 
-    console.log(today)
     return daysOfMonth.filter((date) => {
       const currentDate = new Date(date)
       return today <= currentDate && currentDate <= lastDayOfMonth
@@ -37,6 +40,14 @@ export const availableDatesState = selector<Date[]>({
 export const selectedDatesState = atom<Date[]>({
   key: "selectedDatesState",
   default: availableDatesState,
+})
+
+export const selectedDaysState = selector<number>({
+  key: "selectedDaysState",
+  get: ({ get }) => {
+    const selectedDates = get(selectedDatesState)
+    return selectedDates.length
+  },
 })
 
 export const daysOfMonthState = selector<Date[]>({
@@ -56,5 +67,16 @@ export const daysOfMonthState = selector<Date[]>({
     }
 
     return daysOfMonth
+  },
+})
+
+export const daysOfVisitState = selector<number>({
+  key: "daysOfVisitState",
+  get: ({ get }) => {
+    const remainingHours = get(remainingHoursState)
+    const targetHoursPerDay = get(targetHoursState)
+    const daysOfVisit = remainingHours / targetHoursPerDay
+
+    return daysOfVisit
   },
 })
