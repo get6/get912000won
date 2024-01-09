@@ -3,7 +3,7 @@
 const isGithubActions = process.env.GITHUB_ACTIONS || false
 
 const nextConfig = {
-  reactStrictMode: false,
+  reactStrictMode: isGithubActions ? true : false,
   swcMinify: true,
   ...(isGithubActions && {
     output: "export",

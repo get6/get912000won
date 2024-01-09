@@ -9,8 +9,8 @@ export default function Bottom() {
       <Link href="https://github.com/get6/get912000won" target="_blank">
         <GithubIcon className="w-6 h-6" />
       </Link>
-      <Tooltip content="구글 폼 링크로 이동합니다" className="text-xs">
-        <Link href="https://forms.gle/RJpPgtjdZh86WgRn6">
+      <Tooltip content="구글 폼 링크로 이동해요!" className="text-xs">
+        <Link href="https://forms.gle/RJpPgtjdZh86WgRn6" target="_blank">
           <DocumentTextIcon className="w-6 h-6" />
         </Link>
       </Tooltip>

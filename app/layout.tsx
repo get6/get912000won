@@ -1,5 +1,6 @@
-import Bottom from "@/app/ui/Bottom"
-import Header from "@/app/ui/Header"
+import RootProvider from "@/app/RootProvider"
+import Bottom from "@/app/ui/layout/Bottom"
+import Header from "@/app/ui/layout/Header"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
@@ -21,7 +22,7 @@ export default function RootLayout({
     <html lang="ko">
       <body className={inter.className}>
         <Header />
-        {children}
+        <RootProvider>{children}</RootProvider>
         <Bottom />
       </body>
     </html>

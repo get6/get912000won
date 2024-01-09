@@ -1,29 +1,21 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import {
+  availableDatesState,
+  lastDayOfMonthState,
+  selectedDatesState,
+  todayState,
+} from "@/app/states/days-of-month-state"
+import { HTMLAttributes } from "react"
 import { Calendar, DateObject } from "react-multi-date-picker"
 import "react-multi-date-picker/styles/colors/yellow.css"
+import { useRecoilState, useRecoilValue } from "recoil"
 
 export default function DatePicker() {
-  const [today, setToday] = useState<Date | null>(null)
-
-  useEffect(() => {
-    setToday(new Date())
-  }, [])
-
-  if (!today) return null
-
-  const lastDayOfMonth = new Date(
-    Number(new Date(today.getFullYear(), today.getMonth() + 1, 1)) - 1
-  )
-  const availableDates = []
-  for (
-    let date = new Date(today);
-    date <= lastDayOfMonth;
-    date.setDate(date.getDate() + 1)
-  ) {
-    availableDates.push(new Date(date))
-  }
+  const today = useRecoilValue(todayState)
+  const lastDayOfMonth = useRecoilValue(lastDayOfMonthState)
+  const availableDates = useRecoilValue(availableDatesState)
+  const [selectedDates, setSelectedDates] = useRecoilState(selectedDatesState)
 
   const changeWeekdayProps = ({
     date,
@@ -33,9 +25,10 @@ export default function DatePicker() {
     currentMonth: object
     isSameDate(arg1: DateObject, arg2: DateObject): boolean
   }) => {
-    let props = {}
+    let props: HTMLAttributes<HTMLSpanElement> = {}
     let isWeekend = [0, 6].includes(date.weekDay.index)
-    if (isWeekend) props.className = " highlight-red"
+
+    if (isWeekend) props.className = "highlight-red"
     return props
   }
   const weekDays = ["일", "월", "화", "수", "목", "금", "토"]
@@ -45,9 +38,19 @@ export default function DatePicker() {
     today && (
       <Calendar
         buttons={false}
-        value={availableDates}
+        value={selectedDates}
         highlightToday={false}
-        onChange={(date) => console.log(date)}
+        onChange={(date) => {
+          if (!date) return setSelectedDates([])
+          const dateArray = date instanceof Array ? date : [date]
+          const dates: Date[] = []
+          dateArray.map((date) => {
+            if (date)
+              dates.push(new Date(date!.year, date!.month.index, date!.day))
+          })
+          dates.sort((a, b) => a.getTime() - b.getTime())
+          return setSelectedDates(dates)
+        }}
         multiple
         disableMonthPicker
         disableYearPicker
@@ -56,8 +59,8 @@ export default function DatePicker() {
         maxDate={lastDayOfMonth}
         weekDays={weekDays}
         months={months}
-        formatMonth={(month, year) =>
-          `🗓️ 이번달 ${month}월에 남은 날 ${availableDates.length}일`
+        formatMonth={(month) =>
+          `🗓️ ${month}월에 남은 날 ${availableDates.length}일`
         }
         hideYear
         className="yellow"
