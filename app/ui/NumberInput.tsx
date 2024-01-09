@@ -28,6 +28,9 @@ export default function NumberInput({
       min={min}
       max={max}
       onChange={onChange}
+      autoComplete="off"
+      inputMode="numeric"
+      pattern="[0-9]*"
     />
   )
 }
