@@ -3,6 +3,7 @@ import Bottom from "@/app/ui/layout/Bottom"
 import Header from "@/app/ui/layout/Header"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+import Script from "next/script"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -26,6 +27,21 @@ export default function RootLayout({
           {children}
           <Bottom />
         </Providers>
+        {process.env.NODE_ENV === "production" && (
+          <>
+            {/* Google tag (gtag.js) */}
+            <Script src="https://www.googletagmanager.com/gtag/js?id=G-YV4EWVLLM0" />
+            <Script id="google-analytics">
+              {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            
+            gtag('config', 'G-YV4EWVLLM0');
+            `}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   )
