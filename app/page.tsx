@@ -14,11 +14,11 @@ export default function Home() {
   ]
 
   return (
-    <main className="flex flex-1 h-full flex-col items-center justify-between px-4 gap-3">
+    <main className="flex flex-1 h-full flex-col items-center justify-between px-4 gap-3 dark:bg-gray-900">
       <div className="flex flex-col gap-1 items-center">
         {/* 설명 영역 */}
         {desc.map((d, i) => (
-          <p key={i} className="text-xs font-extralight">
+          <p key={i} className="text-xs font-extralight dark:text-white">
             {d}
           </p>
         ))}

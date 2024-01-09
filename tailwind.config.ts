@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss"
 
 const config: Config = {
+  darkMode: "class",
   content: [
     "./node_modules/flowbite/**/*.js",
     "./node_modules/flowbite-react/lib/esm/**/*.js",

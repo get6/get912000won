@@ -1,4 +1,4 @@
-import RootProvider from "@/app/RootProvider"
+import Providers from "@/app/Providers"
 import Bottom from "@/app/ui/layout/Bottom"
 import Header from "@/app/ui/layout/Header"
 import type { Metadata } from "next"
@@ -19,11 +19,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ko">
-      <body className={inter.className}>
-        <Header />
-        <RootProvider>{children}</RootProvider>
-        <Bottom />
+    <html lang="ko" suppressHydrationWarning>
+      <body className={`${inter.className} dark:bg-gray-900`}>
+        <Providers>
+          <Header />
+          {children}
+          <Bottom />
+        </Providers>
       </body>
     </html>
   )

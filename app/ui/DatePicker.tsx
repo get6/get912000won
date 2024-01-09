@@ -6,13 +6,16 @@ import {
   selectedDatesState,
   todayState,
 } from "@/app/states/days-of-month-state"
+import { useTheme } from "next-themes"
 import { HTMLAttributes } from "react"
 import { Calendar, DateObject } from "react-multi-date-picker"
+import "react-multi-date-picker/styles/backgrounds/bg-dark.css"
 import "react-multi-date-picker/styles/colors/yellow.css"
 import "react-multi-date-picker/styles/layouts/mobile.css"
 import { useRecoilState, useRecoilValue } from "recoil"
 
 export default function DatePicker() {
+  const { theme } = useTheme()
   const today = useRecoilValue(todayState)
   const lastDayOfMonth = useRecoilValue(lastDayOfMonthState)
   const availableDates = useRecoilValue(availableDatesState)
@@ -38,7 +41,7 @@ export default function DatePicker() {
   return (
     today && (
       <Calendar
-        className="rmdp-mobile yellow"
+        className={`rmdp-mobile yellow ${theme === "dark" && "bg-dark"}`}
         buttons={false}
         value={selectedDates}
         highlightToday={false}

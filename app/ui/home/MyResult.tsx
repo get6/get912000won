@@ -24,45 +24,52 @@ export default function MyResult() {
     <div className="flex flex-col gap-2 justify-center w-fit lining-nums">
       {0 < selectedDays ? (
         <>
-          <p className="font-bold text-gray-700 items-start dark:text-gray-500">
+          <p className="font-bold text-gray-700 items-start dark:text-gray-400">
             🫣 결과는...
           </p>
           <div className="flex flex-col gap-1">
-            <p className="text-sm text-gray-700 dark:text-gray-500">
-              <span className="font-semibold">{selectedDays}일</span>
-              &nbsp;동안&nbsp;
-              <span className="font-semibold">{remainingHours}시간</span>을
-              채울려면
-            </p>
-
+            <div className="flex">
+              <p className="text-sm text-gray-700 dark:text-gray-400 font-semibold">
+                {selectedDays}일
+              </p>
+              <p className="text-sm text-gray-700 dark:text-gray-400">
+                &nbsp;동안&nbsp;
+              </p>
+              <p className="text-sm text-gray-700 dark:text-gray-400 font-semibold">
+                {remainingHours}시간
+              </p>
+              <p className="text-sm text-gray-700 dark:text-gray-400">
+                을 채울려면
+              </p>
+            </div>
             {0 <= availableDays ? (
               <span className="flex items-baseline">
-                <p className="text-lg text-gray-700 font-bold dark:text-gray-500">
+                <p className="text-lg text-gray-700 font-bold dark:text-white">
                   {daysOfVisit}일
                 </p>
-                <p className="text-sm text-gray-700 dark:text-gray-500">
+                <p className="text-sm text-gray-700 dark:text-gray-400">
                   을 와야 합니다. 😃
                 </p>
               </span>
             ) : (
               <span className="flex flex-col">
                 <span className="flex items-baseline">
-                  <p className="text-lg text-gray-700 font-bold dark:text-gray-500">
+                  <p className="text-lg text-gray-700 font-bold dark:text-white">
                     {selectedDays}일
                   </p>
-                  <p className="text-sm text-gray-700 dark:text-gray-500">
+                  <p className="text-sm text-gray-700 dark:text-gray-400">
                     &nbsp;하고도
                   </p>
-                  <p className="text-lg text-gray-700 font-bold dark:text-gray-500">
+                  <p className="text-lg text-gray-700 font-bold dark:text-white">
                     &nbsp;{Math.abs(availableDays)}일
                   </p>
-                  <p className="text-sm text-gray-700 dark:text-gray-500">
+                  <p className="text-sm text-gray-700 dark:text-gray-400">
                     을 와야 합니다. 😲
                   </p>
                 </span>
                 {availableDates.length <
                   selectedDays + Math.abs(availableDays) && (
-                  <p className="text-sm text-gray-700 dark:text-gray-500">
+                  <p className="text-sm text-gray-700 dark:text-gray-400">
                     (근데 이건 불가능한데요... 🥹)
                   </p>
                 )}
@@ -71,8 +78,8 @@ export default function MyResult() {
           </div>
         </>
       ) : (
-        <div className="flex flex-col gap-1">
-          <p className="text-sm text-gray-700 dark:text-gray-500">
+        <div className="flex">
+          <p className="text-sm text-gray-700 dark:text-gray-400">
             😰 날짜를 선택해주세요.
           </p>
         </div>

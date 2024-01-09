@@ -33,7 +33,7 @@ export default function MyInfo() {
   return (
     <>
       {infos.map((info, index) => (
-        <div key={index} className="flex items-center">
+        <div key={index} className="flex items-center dark:text-white">
           <p className="text-xs font-medium">{info.title}&nbsp;</p>
           <p className="text-sm font-semibold">{info.value}</p>
           <p className="text-xs">&nbsp;({info.description})</p>
