@@ -39,37 +39,34 @@ export default function DatePicker() {
   const months = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
 
   return (
-    today && (
-      <Calendar
-        className={`rmdp-mobile yellow ${theme === "dark" && "bg-dark"}`}
-        buttons={false}
-        value={selectedDates}
-        highlightToday={false}
-        onChange={(date) => {
-          if (!date) return setSelectedDates([])
-          const dateArray = date instanceof Array ? date : [date]
-          const dates: Date[] = []
-          dateArray.map((date) => {
-            if (date)
-              dates.push(new Date(date!.year, date!.month.index, date!.day))
-          })
-          dates.sort((a, b) => a.getTime() - b.getTime())
-          return setSelectedDates(dates)
-        }}
-        multiple
-        disableMonthPicker
-        disableYearPicker
-        showOtherDays
-        minDate={today}
-        maxDate={lastDayOfMonth}
-        weekDays={weekDays}
-        months={months}
-        formatMonth={(month) =>
-          `🗓️ ${month}월에 남은 날 ${availableDates.length}일`
-        }
-        hideYear
-        mapDays={changeWeekdayProps}
-      />
-    )
+    <Calendar
+      className={`rmdp-mobile yellow ${theme === "dark" && "bg-dark"}`}
+      buttons={false}
+      value={selectedDates}
+      highlightToday={false}
+      onChange={(date) => {
+        if (!date) return setSelectedDates([])
+        const dateArray = date instanceof Array ? date : [date]
+        const dates: Date[] = []
+        dateArray.map((date) => {
+          if (date) dates.push(date.toDate())
+        })
+        dates.sort((a, b) => a.getTime() - b.getTime())
+        return setSelectedDates(dates)
+      }}
+      multiple
+      disableMonthPicker
+      disableYearPicker
+      showOtherDays
+      minDate={today}
+      maxDate={lastDayOfMonth}
+      weekDays={weekDays}
+      months={months}
+      formatMonth={(month) =>
+        `🗓️ ${month}월에 남은 날 ${availableDates.length}일`
+      }
+      hideYear
+      mapDays={changeWeekdayProps}
+    />
   )
 }
