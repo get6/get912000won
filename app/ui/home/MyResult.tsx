@@ -25,7 +25,7 @@ export default function MyResult() {
       {0 < selectedDays ? (
         <>
           <p className="font-bold text-gray-700 items-start dark:text-gray-400">
-            🫣 결과는...
+            😯 결과는...
           </p>
           <div className="flex flex-col gap-1">
             <div className="flex">
