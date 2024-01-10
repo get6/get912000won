@@ -8,10 +8,24 @@ import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
 
+const title = "IA교육지원금 912,000원"
+const description = "42서울 지원금을 위한 출석 시간 계산기 😃"
+
 export const metadata: Metadata = {
-  title: "IA교육지원금 912,000원",
-  description:
-    "42서울 지원금 지급을 위한 160시간이 충족하는지 도움을 주는 계산기입니다",
+  title: title,
+  description: description,
+  openGraph: {
+    title: title,
+    description: description,
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: title,
+      },
+    ],
+  },
 }
 
 export default function RootLayout({
