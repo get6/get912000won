@@ -14,7 +14,7 @@ export default function Home() {
   ]
 
   return (
-    <main className="flex flex-1 h-full flex-col w-screen items-center justify-between px-4 gap-3 dark:bg-gray-900">
+    <main className="flex flex-1 flex-col w-screen items-center justify-center px-4 gap-3 dark:bg-gray-900">
       <div className="flex flex-col gap-1 items-center">
         {/* 설명 영역 */}
         {desc.map((d, i) => (

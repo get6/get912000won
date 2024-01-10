@@ -12,6 +12,11 @@ const title = "IA교육지원금 912,000원"
 const description = "42서울 지원금을 위한 출석 시간 계산기 😃"
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NODE_ENV === "production"
+      ? "https://get6.github.io/get912000won"
+      : "http://localhost:3000"
+  ),
   title: title,
   description: description,
   openGraph: {
@@ -37,9 +42,11 @@ export default function RootLayout({
     <html lang="ko" suppressHydrationWarning>
       <body className={`${inter.className} dark:bg-gray-900`}>
         <Providers>
-          <Header />
-          {children}
-          <Bottom />
+          <div className="flex flex-col h-screen">
+            <Header />
+            {children}
+            <Bottom />
+          </div>
         </Providers>
         {process.env.NODE_ENV === "production" && (
           <>
