@@ -70,7 +70,7 @@ export default function MyResult() {
                 {availableDates.length <
                   selectedDays + Math.abs(availableDays) && (
                   <p className="text-sm text-gray-700 dark:text-gray-400">
-                    (근데 이건 불가능한데요... 🥹)
+                    (근데 이건 불가능한데요... 😥)
                   </p>
                 )}
               </span>
