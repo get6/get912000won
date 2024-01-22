@@ -6,7 +6,7 @@ import Link from "next/link"
 
 export default function Bottom() {
   return (
-    <footer className="flex justify-center items-center w-screen gap-4 dark:bg-gray-900 pb-6">
+    <footer className="flex justify-center items-center gap-4 dark:bg-gray-900 py-3">
       <Link href="https://github.com/get6/get912000won" target="_blank">
         <GithubIcon className="w-6 h-6 dark:text-gray-400" />
       </Link>

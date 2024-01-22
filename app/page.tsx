@@ -14,7 +14,7 @@ export default function Home() {
   ]
 
   return (
-    <main className="flex flex-1 flex-col px-4 gap-3 dark:bg-gray-900">
+    <main className="flex flex-col h-full px-4 gap-3 dark:bg-gray-900 overflow-x-hidden">
       <div className="flex flex-col gap-1 items-center">
         {/* 설명 영역 */}
         {desc.map((d, i) => (
@@ -23,7 +23,7 @@ export default function Home() {
           </p>
         ))}
       </div>
-      <div className="flex items-center h-full flex-col justify-center">
+      <div className="flex flex-1 items-center flex-col justify-center">
         <div className="flex flex-col">
           <MyInfo />
           <Line />
