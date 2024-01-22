@@ -42,7 +42,7 @@ export default function RootLayout({
     <html lang="ko" suppressHydrationWarning>
       <body className={`${inter.className} dark:bg-gray-900`}>
         <Providers>
-          <div className="flex flex-col h-screen">
+          <div className="flex flex-col h-full lg:h-screen">
             <Header />
             {children}
             <Bottom />
