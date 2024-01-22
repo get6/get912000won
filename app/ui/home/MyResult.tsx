@@ -18,11 +18,11 @@ export default function MyResult() {
   const remainingHours = useRecoilValue(remainingHoursState)
   const daysOfVisit = adjustNum(useRecoilValue(daysOfVisitState))
   const availableDays =
-    selectedDays - daysOfVisit >= 0 ? daysOfVisit : selectedDays - daysOfVisit
+    0 <= selectedDays - daysOfVisit ? daysOfVisit : selectedDays - daysOfVisit
 
   return (
     <div className="flex flex-col gap-2 justify-center w-fit lining-nums">
-      {0 < selectedDays ? (
+      {0 < selectedDays && isFinite(availableDays) ? (
         <>
           <p className="font-bold text-gray-700 items-start dark:text-gray-400">
             😯 결과는...
@@ -80,7 +80,9 @@ export default function MyResult() {
       ) : (
         <div className="flex">
           <p className="text-sm text-gray-700 dark:text-gray-400">
-            😰 날짜를 선택해주세요.
+            {isFinite(availableDays)
+              ? "😰 날짜를 선택해주세요."
+              : "🤯 목표 시간을 바꿔주세요."}
           </p>
         </div>
       )}

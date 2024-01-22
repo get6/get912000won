@@ -19,7 +19,7 @@ export default function TargetTimeInput() {
       >
         🔥 하루 목표 시간
         <Tooltip
-          content="1-12 시간만 입력 가능해요"
+          content="0-12 시간만 입력 가능해요"
           className="z-[101] text-xs"
         >
           <ExclamationCircleIcon className="w-4 h-4 hover:cursor-pointer" />
@@ -32,12 +32,12 @@ export default function TargetTimeInput() {
         onChange={(e) => {
           let value = Number(e.target.value)
 
-          if (value < 1) value = 1
+          if (value < 0) value = 0
           if (value > 12) value = 12
 
           setHours(value)
         }}
-        min={1}
+        min={0}
         max={12}
       />
       <div className="flex flex-col gap-2">
