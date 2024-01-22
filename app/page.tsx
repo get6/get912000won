@@ -14,7 +14,7 @@ export default function Home() {
   ]
 
   return (
-    <main className="flex flex-1 flex-col w-screen items-center justify-center px-4 gap-3 dark:bg-gray-900">
+    <main className="flex flex-1 flex-col px-4 gap-3 dark:bg-gray-900">
       <div className="flex flex-col gap-1 items-center">
         {/* 설명 영역 */}
         {desc.map((d, i) => (
@@ -23,25 +23,27 @@ export default function Home() {
           </p>
         ))}
       </div>
-      <div className="flex flex-col">
-        <MyInfo />
-        <Line />
-        <div className="flex flex-col gap-4">
-          {/* 사용자 조작 영역 */}
-          <div className="flex justify-center">
-            <DatePicker />
-          </div>
+      <div className="flex items-center h-full flex-col justify-center">
+        <div className="flex flex-col">
+          <MyInfo />
+          <Line />
           <div className="flex flex-col gap-4">
-            <CumulativeTimeInput />
-            <TargetTimeInput />
+            {/* 사용자 조작 영역 */}
+            <div className="flex justify-center">
+              <DatePicker />
+            </div>
+            <div className="flex flex-col gap-4">
+              <CumulativeTimeInput />
+              <TargetTimeInput />
+            </div>
           </div>
+          <Line />
+          <div className="flex flex-col items-center">
+            {/* 계산 결과 영역 */}
+            <MyResult />
+          </div>
+          <Line />
         </div>
-        <Line />
-        <div className="flex flex-col items-center">
-          {/* 계산 결과 영역 */}
-          <MyResult />
-        </div>
-        <Line />
       </div>
     </main>
   )
