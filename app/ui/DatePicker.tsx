@@ -30,7 +30,7 @@ export default function DatePicker() {
     isSameDate(arg1: DateObject, arg2: DateObject): boolean
   }) => {
     let props: HTMLAttributes<HTMLSpanElement> = {}
-    let isWeekend = [0, 6].includes(date.weekDay.index)
+    let isWeekend: boolean = [0, 6].includes(date.weekDay.index)
 
     if (isWeekend) props.className = "highlight-red"
     return props
