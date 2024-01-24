@@ -1,4 +1,5 @@
 import DatePicker from "@/app/ui/DatePicker"
+import NewDatePicker from "@/app/ui/NewDatePicker"
 import Line from "@/app/ui/Line"
 import CumulativeTimeInput from "@/app/ui/home/CumulativeTimeInput"
 import MyInfo from "@/app/ui/home/MyInfo"
@@ -30,7 +31,8 @@ export default function Home() {
           <div className="flex flex-col gap-4">
             {/* 사용자 조작 영역 */}
             <div className="flex justify-center">
-              <DatePicker />
+              {/*<DatePicker />*/}
+              <NewDatePicker />
             </div>
             <div className="flex flex-col gap-4">
               <CumulativeTimeInput />
