@@ -21,7 +21,7 @@ export default function NewDatePicker() {
 
   return (
     <Calendar
-      className="flex flex-col flex-1 px-4 gap-3"
+      className="flex flex-col flex-1 px-3 py-4 gap-3"
       locale="ko-KO" // use korean
       calendarType="gregory" // start the week with sunday
       minDetail="month" // block to go down to year, decade, so on
@@ -29,6 +29,7 @@ export default function NewDatePicker() {
       next2Label={null}
       prevLabel={null}
       prev2Label={null}
+      selectRange={false}
       minDate={today}
       maxDate={lastDayOfMonth}
       formatDay={(locale, date) => format(date, "d")}

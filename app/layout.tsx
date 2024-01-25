@@ -1,7 +1,7 @@
 import Providers from "@/app/Providers"
 import Bottom from "@/app/ui/layout/Bottom"
 import Header from "@/app/ui/layout/Header"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import Script from "next/script"
 import "./globals.css"
@@ -10,6 +10,11 @@ const inter = Inter({ subsets: ["latin"] })
 
 const title = "IA교육지원금 912,000원"
 const description = "42서울 지원금을 위한 출석 시간 계산기 😃"
+
+export const viewport: Viewport = {
+  maximumScale: 1,
+  viewportFit: "cover",
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL(
