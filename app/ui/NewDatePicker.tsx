@@ -21,6 +21,7 @@ export default function NewDatePicker() {
 
   return (
     <Calendar
+      className="flex flex-col flex-1 px-4 gap-3"
       locale="ko-KO" // use korean
       calendarType="gregory" // start the week with sunday
       minDetail="month" // block to go down to year, decade, so on
@@ -36,8 +37,10 @@ export default function NewDatePicker() {
       }
       onChange={(date, event) => {
         const dates = selectedDates.filter((e) => !isSameDay(e, date as Date))
-        const test = selectedDates.find((e) => isSameDay(e, date as Date))
-        if (test) {
+        const alreadyPickedDate = selectedDates.find((e) =>
+          isSameDay(e, date as Date)
+        )
+        if (alreadyPickedDate) {
           dates.sort((a, b) => a.getTime() - b.getTime())
           return setSelectedDates(dates)
         } else {
@@ -46,19 +49,10 @@ export default function NewDatePicker() {
           return setSelectedDates(dates)
         }
       }}
-      //onChange={(date, event) => {
-      //  if (!date) return setSelectedDates([])
-      //  const dateArray = date instanceof Array ? date : [date]
-      //  const dates: Date[] = []
-      //  dateArray.map((date) => {
-      //    if (date) dates.push(date)
-      //  })
-      //  dates.sort((a, b) => a.getTime() - b.getTime())
-      //  return setSelectedDates(dates)
-      //}}
-      //tileClassName={({ date, view }) => {
-      //  return "react-calendar__tile--active"
-      //}}
+      tileClassName={({ date, view }) => {
+        if (selectedDates.find((e) => isSameDay(e, date as Date)))
+          return "picked"
+      }}
     />
   )
 }
