@@ -12,9 +12,11 @@ const title = "IA교육지원금 912,000원"
 const description = "42서울 지원금을 위한 출석 시간 계산기 😃"
 
 export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
   maximumScale: 1,
   viewportFit: "cover",
-}
+} // prevent zoom-in when the user focused on input area in mobile
 
 export const metadata: Metadata = {
   metadataBase: new URL(
