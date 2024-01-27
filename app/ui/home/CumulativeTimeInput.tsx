@@ -1,14 +1,18 @@
 "use client"
 
-import { cumulativeHoursState } from "@/app/states/my-time-state"
+import {
+  cumulativeHoursState,
+  finishTimeState,
+} from "@/app/states/my-time-state"
 import NumberInput from "@/app/ui/NumberInput"
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline"
 import { Tooltip } from "flowbite-react"
 import Link from "next/link"
-import { useRecoilState } from "recoil"
+import { useRecoilState, useRecoilValue } from "recoil"
 
 export default function CumulativeTimeInput() {
   const [hours, setHours] = useRecoilState(cumulativeHoursState)
+  const finishTime = useRecoilValue(finishTimeState)
 
   return (
     <div className="flex flex-col gap-2">
@@ -18,7 +22,7 @@ export default function CumulativeTimeInput() {
       >
         ⏰ 이번달 누적 시간
         <Tooltip
-          content="0-160 시간만 입력 가능해요"
+          content={`0-${finishTime} 시간만 입력 가능해요`}
           className="z-[101] text-xs"
         >
           <ExclamationCircleIcon className="w-4 h-4 hover:cursor-pointer" />
@@ -29,12 +33,12 @@ export default function CumulativeTimeInput() {
         placeholder="누적 시간"
         value={hours}
         min={0}
-        max={160}
+        max={finishTime}
         onChange={(e) => {
           let value = Number(e.target.value)
 
           if (value < 0) value = 0
-          if (value > 160) value = 160
+          if (value > finishTime) value = finishTime
 
           setHours(value)
         }}
