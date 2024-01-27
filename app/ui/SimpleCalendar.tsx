@@ -21,7 +21,6 @@ import {
   parse,
   startOfToday,
 } from "date-fns"
-import { useTheme } from "next-themes"
 import { useRecoilState, useRecoilValue } from "recoil"
 import { Fragment, useState } from "react"
 
@@ -30,7 +29,6 @@ function classNames(...classes: (string | boolean)[]) {
 }
 
 export default function Example() {
-  const { theme } = useTheme()
   //const today = useRecoilValue(todayState)
   const lastDayOfMonth = useRecoilValue(lastDayOfMonthState)
   const availableDates = useRecoilValue(availableDatesState)
@@ -46,24 +44,24 @@ export default function Example() {
     end: endOfMonth(firstDayCurrentMonth),
   })
 
-  function previousMonth() {
-    let firstDayNextMonth = add(firstDayCurrentMonth, { months: -1 })
-    setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"))
-  }
+  //function previousMonth() {
+  //  let firstDayNextMonth = add(firstDayCurrentMonth, { months: -1 })
+  //  setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"))
+  //}
 
-  function nextMonth() {
-    let firstDayNextMonth = add(firstDayCurrentMonth, { months: 1 })
-    setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"))
-  }
+  //function nextMonth() {
+  //  let firstDayNextMonth = add(firstDayCurrentMonth, { months: 1 })
+  //  setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"))
+  //}
 
   return (
     <div className="pt-5 max-w-sm">
       <div className="flex items-center">
-        <h2 className="flex-auto font-semibold text-gray-900">
+        <h2 className="flex-auto font-semibold text-gray-900 dark:text-white">
           🗓️ {format(firstDayCurrentMonth, "yyyy M")}월: 남은 날{" "}
           {availableDates.length}일
         </h2>
-        <button
+        {/*<button
           type="button"
           onClick={previousMonth}
           className="-my-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
@@ -78,9 +76,9 @@ export default function Example() {
         >
           <span className="sr-only">Next month</span>
           <ChevronRightIcon className="w-5 h-5" aria-hidden="true" />
-        </button>
+        </button>*/}
       </div>
-      <div className="grid grid-cols-7 mt-10 text-xs leading-6 text-center text-amber-950 font-semibold text-">
+      <div className="grid grid-cols-7 mt-10 text-xs leading-6 text-center text-amber-950 dark:text-yellow-400 font-semibold">
         <div>일</div>
         <div>월</div>
         <div>화</div>
@@ -100,22 +98,27 @@ export default function Example() {
           >
             <button
               type="button"
-              onClick={() => setSelectedDay(day)}
+              onClick={(e) => {
+                setSelectedDay(day)
+              }}
               className={classNames(
-                isEqual(day, selectedDay) && "text-white",
+                isEqual(day, selectedDay) && "text-white dark:text-gray-700",
                 !isEqual(day, selectedDay) && isToday(day) && "text-orange-400",
-                isEqual(day, selectedDay) && "text-white",
-                !isEqual(day, selectedDay) && isWeekend(day) && "text-red-600",
+                !isEqual(day, selectedDay) &&
+                  isWeekend(day) &&
+                  "text-red-600 dark:text-red-500",
                 !isEqual(day, selectedDay) &&
                   !isToday(day) &&
                   isSameMonth(day, firstDayCurrentMonth) &&
-                  "text-gray-900",
+                  "text-gray-900 dark:text-gray-300",
                 !isEqual(day, selectedDay) &&
                   !isToday(day) &&
                   !isSameMonth(day, firstDayCurrentMonth) &&
                   "text-gray-400",
                 isEqual(day, selectedDay) && isToday(day) && "bg-red-500",
-                isEqual(day, selectedDay) && !isToday(day) && "bg-gray-900",
+                isEqual(day, selectedDay) &&
+                  !isToday(day) &&
+                  "bg-gray-900 dark:bg-yellow-400",
                 !isEqual(day, selectedDay) && "hover:bg-gray-200",
                 (isEqual(day, selectedDay) || isToday(day)) && "font-semibold",
                 "flex h-5 w-5 mx-3 my-1 items-center justify-center rounded-full"
