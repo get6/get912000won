@@ -57,7 +57,7 @@ export default function Example() {
   return (
     <div className="pt-5 max-w-sm">
       <div className="flex items-center">
-        <h2 className="flex-auto font-semibold text-gray-900 dark:text-white">
+        <h2 className="flex-auto font-semibold text-center text-gray-900 dark:text-white">
           🗓️ {format(firstDayCurrentMonth, "yyyy M")}월: 남은 날{" "}
           {availableDates.length}일
         </h2>
