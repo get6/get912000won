@@ -23,6 +23,9 @@ dependencies:
   react:
     specifier: ^18
     version: 18.2.0
+  react-canvas-confetti:
+    specifier: ^2.0.5
+    version: 2.0.5(react@18.2.0)
   react-dom:
     specifier: ^18
     version: 18.2.0(react@18.2.0)
@@ -1077,6 +1080,10 @@ packages:
       '@types/estree': 1.0.5
     dev: false
 
+  /@types/canvas-confetti@1.6.4:
+    resolution: {integrity: sha512-fNyZ/Fdw/Y92X0vv7B+BD6ysHL4xVU5dJcgzgxLdGbn8O3PezZNIJpml44lKM0nsGur+o/6+NZbZeNTt00U1uA==}
+    dev: false
+
   /@types/debug@4.1.12:
     resolution: {integrity: sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==}
     dependencies:
@@ -1549,6 +1556,10 @@ packages:
 
   /caniuse-lite@1.0.30001580:
     resolution: {integrity: sha512-mtj5ur2FFPZcCEpXFy8ADXbDACuNFXg6mxVDqp7tqooX6l3zwm+d8EPoeOSIFRDvHs8qu7/SLFOGniULkcH2iA==}
+
+  /canvas-confetti@1.9.2:
+    resolution: {integrity: sha512-6Xi7aHHzKwxZsem4mCKoqP6YwUG3HamaHHAlz1hTNQPCqXhARFpSXnkC9TWlahHY5CG6hSL5XexNjxK8irVErg==}
+    dev: false
 
   /ccount@2.0.1:
     resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
@@ -4720,6 +4731,16 @@ packages:
       ini: 1.3.8
       minimist: 1.2.8
       strip-json-comments: 2.0.1
+    dev: false
+
+  /react-canvas-confetti@2.0.5(react@18.2.0):
+    resolution: {integrity: sha512-fL5WMHdNeLFqCMkgm0k4FzjPviEIv702zLl8GOaBonbBN0YG7YUsMyTV4OTEh+ukJBIs9082vh/L8s7yPeU+FA==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      '@types/canvas-confetti': 1.6.4
+      canvas-confetti: 1.9.2
+      react: 18.2.0
     dev: false
 
   /react-date-object@2.1.8:
