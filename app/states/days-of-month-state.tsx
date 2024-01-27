@@ -77,6 +77,6 @@ export const daysOfVisitState = selector<number>({
     const targetHoursPerDay = get(targetHoursState)
     const daysOfVisit = remainingHours / targetHoursPerDay
 
-    return daysOfVisit
+    return isNaN(daysOfVisit) ? 0 : daysOfVisit
   },
 })
