@@ -119,7 +119,7 @@ export default function Example() {
                 isEqual(day, selectedDay) &&
                   !isToday(day) &&
                   "bg-gray-900 dark:bg-yellow-400",
-                !isEqual(day, selectedDay) && "hover:bg-gray-200",
+                !isEqual(day, selectedDay) && "betterhover:hover:bg-gray-200",
                 (isEqual(day, selectedDay) || isToday(day)) && "font-semibold",
                 "flex h-5 w-5 mx-3 my-1 items-center justify-center rounded-full"
               )}
