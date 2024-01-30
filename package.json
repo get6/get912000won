@@ -13,7 +13,7 @@
     "date-fns": "^3.3.1",
     "flowbite": "^2.2.1",
     "flowbite-react": "^0.7.2",
-    "next": "14.0.4",
+    "next": "14.1.0",
     "next-themes": "^0.2.1",
     "react": "^18",
     "react-calendar": "^4.8.0",
