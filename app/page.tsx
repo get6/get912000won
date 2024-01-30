@@ -25,7 +25,7 @@ export default function Home() {
           </p>
         ))}
       </div>
-      <div className="flex flex-1 items-center flex-col justify-center">
+      <div className="flex items-center flex-col justify-center">
         <div className="flex flex-col">
           <MyInfo />
           <Line />
