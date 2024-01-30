@@ -95,6 +95,7 @@ export default function SimpleCalendar() {
               className={classNames(
                 !isAvailableDay(day) && "disabled: opacity-30 cursor-default",
                 isAvailableDay(day) &&
+                  !selectedDates.includes(day) &&
                   "text-gray-900 dark:text-gray-300\
                   betterhover:hover:bg-gray-300 betterhover:hover:dark:bg-gray-500",
                 isWeekend(day) && "text-red-600 dark:text-red-500",
