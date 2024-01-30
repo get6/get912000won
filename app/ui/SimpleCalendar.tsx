@@ -65,14 +65,14 @@ export default function SimpleCalendar() {
   }
 
   return (
-    <div className="pt-5 max-w-sm for-mobile">
-      <h2 className="flex-auto font-semibold text-center text-gray-900 dark:text-white">
+    <div className="py-8 p-3 max-w-sm for-mobile bg-gray-50 dark:bg-gray-700 shadow-lg rounded-lg">
+      <h2 className="flex-auto text-center text-gray-900 dark:text-white">
         🗓️ {format(lastDayOfMonth, "yyyy M")}월: 남은 날 {availableDates.length}
         일
       </h2>
       <div
         className="grid grid-cols-7 mt-10 text-xs leading-6\
-          text-center text-amber-950 dark:text-yellow-400 font-semibold"
+          text-center text-amber-600 dark:text-blue-400 font-semibold"
       >
         {weekDays.map((value, index) => (
           <div key={index}>{value}</div>
@@ -84,7 +84,7 @@ export default function SimpleCalendar() {
             key={day.toString()}
             className={classNames(
               dayIdx === 0 && colStartClasses[getDay(day)],
-              "py-1 px-1 item-center"
+              "px-0.5 item-center"
             )}
           >
             <button
@@ -100,9 +100,9 @@ export default function SimpleCalendar() {
                   betterhover:hover:bg-gray-300 betterhover:hover:dark:bg-gray-500",
                 isWeekend(day) && "text-red-600 dark:text-red-500",
                 selectedDates.includes(day) &&
-                  "bg-emerald-600 dark:bg-orange-500\
-                  betterhover:hover:bg-emerald-400 betterhover:hover:dark:bg-orange-400",
-                "flex h-8 w-8 mx-1 items-center justify-center rounded-full"
+                  "bg-amber-500 text-gray-100 dark:bg-blue-600\
+                  betterhover:hover:bg-amber-400 betterhover:hover:dark:bg-blue-500",
+                "flex h-9 w-9 items-center justify-center rounded-lg font-semibold"
               )}
             >
               <time dateTime={format(day, "yyyy-MM-dd")}>
@@ -115,3 +115,8 @@ export default function SimpleCalendar() {
     </div>
   )
 }
+
+// bg-gray-50 border border-gray-300 text-gray-900 text-sm
+// rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5
+// dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+// dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500

@@ -25,13 +25,13 @@ export default function Home() {
           </p>
         ))}
       </div>
-      <div className="flex items-center flex-col justify-center">
+      <div className="flex flex-1 items-center flex-col justify-center">
         <div className="flex flex-col">
           <MyInfo />
           <Line />
           <div className="flex flex-col gap-4">
             {/* 사용자 조작 영역 */}
-            <div className="flex justify-center">
+            <div className="flex justify-center pt-2">
               {/*<DatePicker />*/}
               {/*<NewDatePicker />*/}
               <SimpleCalendar />
