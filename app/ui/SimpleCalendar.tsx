@@ -7,14 +7,8 @@ import {
   selectedDatesState,
   todayState,
 } from "@/app/states/days-of-month-state"
-import {
-  format,
-  getDay,
-  isSameDay,
-  isSameMonth,
-  isToday,
-  isWeekend,
-} from "date-fns"
+import { format, getDay, isSameDay, isWeekend } from "date-fns"
+import { isMobile } from "react-device-detect"
 import { useRecoilState, useRecoilValue } from "recoil"
 
 function classNames(...classes: (string | boolean)[]) {
@@ -22,7 +16,6 @@ function classNames(...classes: (string | boolean)[]) {
 }
 
 export default function SimpleCalendar() {
-  const today = useRecoilValue(todayState)
   const daysOfMonth = useRecoilValue(daysOfMonthState)
   const lastDayOfMonth = useRecoilValue(lastDayOfMonthState)
   const availableDates = useRecoilValue(availableDatesState)
@@ -45,6 +38,21 @@ export default function SimpleCalendar() {
   }
 
   const datePick = (day: Date) => {
+    if (isMobile) return
+    const dates = selectedDates.filter((e) => !isSameDay(e, day))
+    const alreadyPickedDate = selectedDates.find((e) => isSameDay(e, day))
+    if (alreadyPickedDate) {
+      dates.sort((a, b) => a.getTime() - b.getTime())
+      return setSelectedDates(dates)
+    } else {
+      dates.push(day)
+      dates.sort((a, b) => a.getTime() - b.getTime())
+      return setSelectedDates(dates)
+    }
+  }
+
+  const datePickMobile = (day: Date) => {
+    if (!isMobile || !isAvailableDay(day)) return
     const dates = selectedDates.filter((e) => !isSameDay(e, day))
     const alreadyPickedDate = selectedDates.find((e) => isSameDay(e, day))
     if (alreadyPickedDate) {
@@ -63,7 +71,10 @@ export default function SimpleCalendar() {
         🗓️ {format(lastDayOfMonth, "yyyy M")}월: 남은 날 {availableDates.length}
         일
       </h2>
-      <div className="grid grid-cols-7 mt-10 text-xs leading-6 text-center text-amber-950 dark:text-yellow-400 font-semibold">
+      <div
+        className="grid grid-cols-7 mt-10 text-xs leading-6\
+          text-center text-amber-950 dark:text-yellow-400 font-semibold"
+      >
         {weekDays.map((value) => (
           <div>{value}</div>
         ))}
@@ -74,25 +85,24 @@ export default function SimpleCalendar() {
             key={day.toString()}
             className={classNames(
               dayIdx === 0 && colStartClasses[getDay(day)],
-              "py-1.5 px-1 item-center"
+              "py-1 px-1 item-center"
             )}
           >
             <button
               type="button"
               disabled={!isAvailableDay(day)}
+              onTouchEnd={() => datePickMobile(day)}
               onClick={() => datePick(day)}
               className={classNames(
                 !isAvailableDay(day) && "disabled: opacity-30 cursor-default",
                 isAvailableDay(day) &&
-                  "text-gray-900 dark:text-gray-300 betterhover:hover:bg-gray-300 betterhover:hover:dark:bg-gray-500",
+                  "text-gray-900 dark:text-gray-300\
+                  betterhover:hover:bg-gray-300 betterhover:hover:dark:bg-gray-500",
                 isWeekend(day) && "text-red-600 dark:text-red-500",
                 selectedDates.includes(day) &&
-                  "bg-emerald-600 dark:bg-orange-500 betterhover:hover:bg-emerald-400 betterhover:hover:dark:bg-orange-400",
-                //!isSameDay(day, selectedDay) &&
-                //  !isToday(day) &&
-                //  !isSameMonth(day, lastDayOfMonth) &&
-                //  "text-gray-400",
-                "flex h-9 w-9 items-center justify-center rounded-full"
+                  "bg-emerald-600 dark:bg-orange-500\
+                  betterhover:hover:bg-emerald-400 betterhover:hover:dark:bg-orange-400",
+                "flex h-8 w-8 mx-1 items-center justify-center rounded-full"
               )}
             >
               <time dateTime={format(day, "yyyy-MM-dd")}>
