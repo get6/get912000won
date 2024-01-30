@@ -5,7 +5,7 @@ import CumulativeTimeInput from "@/app/ui/home/CumulativeTimeInput"
 import MyInfo from "@/app/ui/home/MyInfo"
 import MyResult from "@/app/ui/home/MyResult"
 import TargetTimeInput from "@/app/ui/home/TargetTimeInput"
-import Example from "./ui/SimpleCalendar"
+import SimpleCalendar from "./ui/SimpleCalendar"
 
 export default function Home() {
   const desc = [
@@ -34,7 +34,7 @@ export default function Home() {
             <div className="flex justify-center">
               {/*<DatePicker />*/}
               {/*<NewDatePicker />*/}
-              <Example />
+              <SimpleCalendar />
             </div>
             <Line />
             <div className="flex flex-col gap-4">

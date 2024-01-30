@@ -1,91 +1,72 @@
 "use client"
 
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid"
 import {
   availableDatesState,
+  daysOfMonthState,
   lastDayOfMonthState,
   selectedDatesState,
   todayState,
 } from "@/app/states/days-of-month-state"
 import {
-  add,
-  eachDayOfInterval,
-  endOfMonth,
   format,
   getDay,
-  isEqual,
   isSameDay,
   isSameMonth,
   isToday,
   isWeekend,
-  parse,
-  startOfToday,
 } from "date-fns"
 import { useRecoilState, useRecoilValue } from "recoil"
-import { Fragment, useState } from "react"
 
 function classNames(...classes: (string | boolean)[]) {
   return classes.filter(Boolean).join(" ")
 }
 
-export default function Example() {
-  //const today = useRecoilValue(todayState)
+export default function SimpleCalendar() {
+  const today = useRecoilValue(todayState)
+  const daysOfMonth = useRecoilValue(daysOfMonthState)
   const lastDayOfMonth = useRecoilValue(lastDayOfMonthState)
   const availableDates = useRecoilValue(availableDatesState)
   const [selectedDates, setSelectedDates] = useRecoilState(selectedDatesState)
 
-  let today = startOfToday()
-  let [selectedDay, setSelectedDay] = useState(today)
-  let [currentMonth, setCurrentMonth] = useState(format(today, "MMM-yyyy"))
-  let firstDayCurrentMonth = parse(currentMonth, "MMM-yyyy", new Date())
+  const days = daysOfMonth
+  const weekDays = ["일", "월", "화", "수", "목", "금", "토"]
+  const colStartClasses = [
+    "",
+    "col-start-2",
+    "col-start-3",
+    "col-start-4",
+    "col-start-5",
+    "col-start-6",
+    "col-start-7",
+  ]
 
-  let days = eachDayOfInterval({
-    start: firstDayCurrentMonth,
-    end: endOfMonth(firstDayCurrentMonth),
-  })
+  const isAvailableDay = (day: Date) => {
+    return availableDates.includes(day)
+  }
 
-  //function previousMonth() {
-  //  let firstDayNextMonth = add(firstDayCurrentMonth, { months: -1 })
-  //  setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"))
-  //}
-
-  //function nextMonth() {
-  //  let firstDayNextMonth = add(firstDayCurrentMonth, { months: 1 })
-  //  setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"))
-  //}
+  const datePick = (day: Date) => {
+    const dates = selectedDates.filter((e) => !isSameDay(e, day))
+    const alreadyPickedDate = selectedDates.find((e) => isSameDay(e, day))
+    if (alreadyPickedDate) {
+      dates.sort((a, b) => a.getTime() - b.getTime())
+      return setSelectedDates(dates)
+    } else {
+      dates.push(day)
+      dates.sort((a, b) => a.getTime() - b.getTime())
+      return setSelectedDates(dates)
+    }
+  }
 
   return (
-    <div className="pt-5 max-w-sm">
-      <div className="flex items-center">
-        <h2 className="flex-auto font-semibold text-center text-gray-900 dark:text-white">
-          🗓️ {format(firstDayCurrentMonth, "yyyy M")}월: 남은 날{" "}
-          {availableDates.length}일
-        </h2>
-        {/*<button
-          type="button"
-          onClick={previousMonth}
-          className="-my-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
-        >
-          <span className="sr-only">Previous month</span>
-          <ChevronLeftIcon className="w-5 h-5" aria-hidden="true" />
-        </button>
-        <button
-          onClick={nextMonth}
-          type="button"
-          className="-my-1.5 -mr-1.5 ml-2 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
-        >
-          <span className="sr-only">Next month</span>
-          <ChevronRightIcon className="w-5 h-5" aria-hidden="true" />
-        </button>*/}
-      </div>
+    <div className="pt-5 max-w-sm for-mobile">
+      <h2 className="flex-auto font-semibold text-center text-gray-900 dark:text-white">
+        🗓️ {format(lastDayOfMonth, "yyyy M")}월: 남은 날 {availableDates.length}
+        일
+      </h2>
       <div className="grid grid-cols-7 mt-10 text-xs leading-6 text-center text-amber-950 dark:text-yellow-400 font-semibold">
-        <div>일</div>
-        <div>월</div>
-        <div>화</div>
-        <div>수</div>
-        <div>목</div>
-        <div>금</div>
-        <div>토</div>
+        {weekDays.map((value) => (
+          <div>{value}</div>
+        ))}
       </div>
       <div className="grid grid-cols-7 mt-2 text-sm">
         {days.map((day, dayIdx) => (
@@ -98,30 +79,20 @@ export default function Example() {
           >
             <button
               type="button"
-              onClick={(e) => {
-                setSelectedDay(day)
-              }}
+              disabled={!isAvailableDay(day)}
+              onClick={() => datePick(day)}
               className={classNames(
-                isEqual(day, selectedDay) && "text-white dark:text-gray-700",
-                !isEqual(day, selectedDay) && isToday(day) && "text-orange-400",
-                !isEqual(day, selectedDay) &&
-                  isWeekend(day) &&
-                  "text-red-600 dark:text-red-500",
-                !isEqual(day, selectedDay) &&
-                  !isToday(day) &&
-                  isSameMonth(day, firstDayCurrentMonth) &&
-                  "text-gray-900 dark:text-gray-300",
-                !isEqual(day, selectedDay) &&
-                  !isToday(day) &&
-                  !isSameMonth(day, firstDayCurrentMonth) &&
-                  "text-gray-400",
-                isEqual(day, selectedDay) && isToday(day) && "bg-red-500",
-                isEqual(day, selectedDay) &&
-                  !isToday(day) &&
-                  "bg-gray-900 dark:bg-yellow-400",
-                !isEqual(day, selectedDay) && "betterhover:hover:bg-gray-200",
-                (isEqual(day, selectedDay) || isToday(day)) && "font-semibold",
-                "flex h-5 w-5 mx-3 my-1 items-center justify-center rounded-full"
+                !isAvailableDay(day) && "disabled: opacity-30 cursor-default",
+                isAvailableDay(day) &&
+                  "text-gray-900 dark:text-gray-300 betterhover:hover:bg-gray-300 betterhover:hover:dark:bg-gray-500",
+                isWeekend(day) && "text-red-600 dark:text-red-500",
+                selectedDates.includes(day) &&
+                  "bg-emerald-600 dark:bg-orange-500 betterhover:hover:bg-emerald-400 betterhover:hover:dark:bg-orange-400",
+                //!isSameDay(day, selectedDay) &&
+                //  !isToday(day) &&
+                //  !isSameMonth(day, lastDayOfMonth) &&
+                //  "text-gray-400",
+                "flex h-9 w-9 items-center justify-center rounded-full"
               )}
             >
               <time dateTime={format(day, "yyyy-MM-dd")}>
@@ -134,13 +105,3 @@ export default function Example() {
     </div>
   )
 }
-
-let colStartClasses = [
-  "",
-  "col-start-2",
-  "col-start-3",
-  "col-start-4",
-  "col-start-5",
-  "col-start-6",
-  "col-start-7",
-]
