@@ -5,7 +5,6 @@ import {
   daysOfMonthState,
   lastDayOfMonthState,
   selectedDatesState,
-  todayState,
 } from "@/app/states/days-of-month-state"
 import { format, getDay, isSameDay, isWeekend } from "date-fns"
 import { isMobile } from "react-device-detect"
@@ -75,8 +74,8 @@ export default function SimpleCalendar() {
         className="grid grid-cols-7 mt-10 text-xs leading-6\
           text-center text-amber-950 dark:text-yellow-400 font-semibold"
       >
-        {weekDays.map((value) => (
-          <div>{value}</div>
+        {weekDays.map((value, index) => (
+          <div key={index}>{value}</div>
         ))}
       </div>
       <div className="grid grid-cols-7 mt-2 text-sm">
