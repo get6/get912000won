@@ -97,11 +97,11 @@ export default function SimpleCalendar() {
                 isAvailableDay(day) &&
                   !selectedDates.includes(day) &&
                   "text-gray-900 dark:text-gray-300\
-                  betterhover:hover:bg-gray-300 betterhover:hover:dark:bg-gray-500",
+                  hover:bg-gray-300 hover:dark:bg-gray-500",
                 isWeekend(day) && "text-red-600 dark:text-red-500",
                 selectedDates.includes(day) &&
                   "bg-amber-500 text-gray-100 dark:bg-blue-600\
-                  betterhover:hover:bg-amber-400 betterhover:hover:dark:bg-blue-500",
+                  hover:bg-amber-400 hover:dark:bg-blue-500",
                 "flex h-9 w-9 items-center justify-center rounded-lg font-semibold"
               )}
             >
@@ -115,8 +115,3 @@ export default function SimpleCalendar() {
     </div>
   )
 }
-
-// bg-gray-50 border border-gray-300 text-gray-900 text-sm
-// rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5
-// dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
-// dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
