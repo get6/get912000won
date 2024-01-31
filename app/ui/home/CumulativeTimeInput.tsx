@@ -18,14 +18,14 @@ export default function CumulativeTimeInput() {
     <div className="flex flex-col gap-2">
       <label
         htmlFor={"cumulativeTime"}
-        className="flex gap-1 items-center text-sm font-medium text-gray-900 dark:text-white"
+        className="flex items-center gap-1 text-sm font-medium text-gray-900 dark:text-white"
       >
         ⏰ 이번달 누적 시간
         <Tooltip
           content={`0-${finishTime} 시간만 입력 가능해요`}
           className="z-[101] text-xs"
         >
-          <ExclamationCircleIcon className="w-4 h-4 hover:cursor-pointer" />
+          <ExclamationCircleIcon className="h-4 w-4 hover:cursor-pointer" />
         </Tooltip>
       </label>
       <NumberInput
@@ -50,7 +50,7 @@ export default function CumulativeTimeInput() {
           <Link
             href="https://24hoursarenotenough.42seoul.kr/"
             target="_blank"
-            className="text-yellow-400 hover:underline"
+            className="text-yellow-400 hover:underline dark:text-blue-400"
           >
             24HANE
           </Link>
