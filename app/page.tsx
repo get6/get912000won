@@ -1,5 +1,3 @@
-import DatePicker from "@/app/ui/DatePicker"
-import NewDatePicker from "@/app/ui/NewDatePicker"
 import Line from "@/app/ui/Line"
 import CumulativeTimeInput from "@/app/ui/home/CumulativeTimeInput"
 import MyInfo from "@/app/ui/home/MyInfo"
