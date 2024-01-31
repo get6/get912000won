@@ -1,6 +1,9 @@
 import type { Config } from "tailwindcss"
 
 const config: Config = {
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   darkMode: "class",
   content: [
     "./node_modules/flowbite/**/*.js",

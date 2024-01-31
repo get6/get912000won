@@ -15,13 +15,13 @@ export default function Badge({ children }: Props) {
 
   return (
     <span
-      className="bg-yellow-100 text-yellow-800 text-xs inline-flex items-center font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300 hover:cursor-pointer gap-1.5"
+      className="inline-flex items-center gap-1.5 rounded-full bg-yellow-100 px-2.5 py-0.5 text-xs font-medium text-yellow-800 hover:cursor-pointer dark:bg-blue-900  dark:text-blue-300"
       onClick={() => setHours(Number(children))}
     >
       {Number(children) === badge ? (
-        <CheckIcon className="w-3.5 h-3.5" />
+        <CheckIcon className="h-3.5 w-3.5" />
       ) : (
-        <ClockIcon className="w-3.5 h-3.5" />
+        <ClockIcon className="h-3.5 w-3.5" />
       )}
 
       {children}
