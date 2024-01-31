@@ -16,8 +16,8 @@ export default function Home() {
   ]
 
   return (
-    <main className="flex flex-col flex-1 px-4 gap-3 dark:bg-gray-900">
-      <div className="flex flex-col gap-1 items-center">
+    <main className="flex flex-1 flex-col gap-3 px-4 dark:bg-gray-900">
+      <div className="flex flex-col items-center gap-1">
         {/* 설명 영역 */}
         {desc.map((d, i) => (
           <p key={i} className="text-xs font-extralight dark:text-white">
@@ -25,15 +25,13 @@ export default function Home() {
           </p>
         ))}
       </div>
-      <div className="flex flex-1 items-center flex-col justify-center">
+      <div className="flex flex-1 flex-col items-center justify-center">
         <div className="flex flex-col">
           <MyInfo />
           <Line />
           <div className="flex flex-col gap-4">
             {/* 사용자 조작 영역 */}
             <div className="flex justify-center pt-2">
-              {/*<DatePicker />*/}
-              {/*<NewDatePicker />*/}
               <SimpleCalendar />
             </div>
             <Line />
