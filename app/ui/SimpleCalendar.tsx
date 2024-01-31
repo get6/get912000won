@@ -65,43 +65,41 @@ export default function SimpleCalendar() {
   }
 
   return (
-    <div className="py-8 p-3 max-w-sm for-mobile bg-gray-50 dark:bg-gray-700 shadow-lg rounded-lg">
+    <div className="for-mobile max-w-sm rounded-lg bg-gray-50 p-3 py-8 shadow-lg dark:bg-gray-700">
       <h2 className="flex-auto text-center text-gray-900 dark:text-white">
-        🗓️ {format(lastDayOfMonth, "yyyy M")}월: 남은 날 {availableDates.length}
-        일
+        🗓️ {format(lastDayOfMonth, "M")}월 남은 날 {availableDates.length}일
       </h2>
-      <div
-        className="grid grid-cols-7 mt-10 text-xs leading-6\
-          text-center text-amber-600 dark:text-blue-400 font-semibold"
-      >
-        {weekDays.map((value, index) => (
-          <div key={index}>{value}</div>
+      <div className="mt-8 grid grid-cols-7 text-center">
+        {weekDays.map((day, index) => (
+          <div
+            key={index}
+            className="text-sm font-semibold leading-6 text-amber-300 dark:text-blue-400"
+          >
+            {day}
+          </div>
         ))}
       </div>
-      <div className="grid grid-cols-7 mt-2 text-sm">
+      <div className="mt-2 grid grid-cols-7 text-sm">
         {days.map((day, dayIdx) => (
           <div
             key={day.toString()}
             className={classNames(
               dayIdx === 0 && colStartClasses[getDay(day)],
-              "px-0.5 item-center"
+              "item-center px-0.5"
             )}
           >
             <button
-              type="button"
               disabled={!isAvailableDay(day)}
               onTouchEnd={() => datePickMobile(day)}
               onClick={() => datePick(day)}
               className={classNames(
-                !isAvailableDay(day) && "disabled: opacity-30 cursor-default",
+                !isAvailableDay(day) && "disabled: cursor-default opacity-30",
                 isAvailableDay(day) &&
                   !selectedDates.includes(day) &&
-                  "text-gray-900 dark:text-gray-300\
-                  hover:bg-gray-300 hover:dark:bg-gray-500",
+                  "text-gray-900 hover:bg-gray-300 dark:text-gray-300 hover:dark:bg-gray-500",
                 isWeekend(day) && "text-red-600 dark:text-red-500",
                 selectedDates.includes(day) &&
-                  "bg-amber-500 text-gray-100 dark:bg-blue-600\
-                  hover:bg-amber-400 hover:dark:bg-blue-500",
+                  "bg-amber-300 text-gray-100 hover:bg-amber-200 dark:bg-blue-600 hover:dark:bg-blue-500",
                 "flex h-9 w-9 items-center justify-center rounded-lg font-semibold"
               )}
             >
