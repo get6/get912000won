@@ -97,9 +97,7 @@ export default function SimpleCalendar() {
                 isAvailableDay(day) &&
                   !selectedDates.includes(day) &&
                   "text-gray-900 hover:bg-gray-300 dark:text-gray-300 hover:dark:bg-gray-500",
-                !selectedDates.includes(day) &&
-                  isWeekend(day) &&
-                  "text-red-600 dark:text-red-500",
+                isWeekend(day) && "text-red-500 dark:text-red-500",
                 selectedDates.includes(day) &&
                   "bg-amber-300 text-gray-100 hover:bg-amber-200 dark:bg-blue-600 hover:dark:bg-blue-500",
                 "flex h-9 w-9 items-center justify-center rounded-lg font-semibold"
