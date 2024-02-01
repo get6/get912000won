@@ -102,7 +102,7 @@ export default function SimpleCalendar() {
                   "text-red-600 dark:text-red-500",
                 selectedDates.includes(day) &&
                   "bg-amber-300 text-gray-100 hover:bg-amber-200 dark:bg-blue-600 hover:dark:bg-blue-500",
-                "my-0.5 flex h-9 w-9 items-center justify-center rounded-lg font-semibold"
+                "flex h-9 w-9 items-center justify-center rounded-lg font-semibold"
               )}
             >
               <time dateTime={format(day, "yyyy-MM-dd")}>
