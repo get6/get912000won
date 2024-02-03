@@ -8,11 +8,27 @@ import NumberInput from "@/app/ui/NumberInput"
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline"
 import { Tooltip } from "flowbite-react"
 import Link from "next/link"
+import { useSearchParams } from "next/navigation"
+import { useEffect } from "react"
 import { useRecoilState, useRecoilValue } from "recoil"
 
 export default function CumulativeTimeInput() {
+  const searchParams = useSearchParams()
   const [hours, setHours] = useRecoilState(cumulativeHoursState)
   const finishTime = useRecoilValue(finishTimeState)
+
+  const params = new URLSearchParams(searchParams)
+  const cumulativeTime = params.get("cumulativeTime")
+
+  useEffect(() => {
+    if (cumulativeTime) {
+      const test = Number(cumulativeTime)
+      if (isFinite(test) && test >= 0) {
+        if (test > finishTime) setHours(Number(finishTime))
+        else setHours(Number(cumulativeTime))
+      }
+    }
+  }, [cumulativeTime, finishTime, setHours])
 
   return (
     <div className="flex flex-col gap-2">
