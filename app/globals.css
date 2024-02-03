@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .selected-button {
+    @apply bg-amber-300 text-gray-100 hover:bg-amber-200 dark:bg-blue-600 hover:dark:bg-blue-500;
+  }
+
+  .unselected-button {
+    @apply text-gray-900 hover:bg-gray-300 dark:text-gray-300 hover:dark:bg-gray-500;
+  }
+}
+
 @layer utilities {
   .for-mobile {
     -ms-user-select: none;
