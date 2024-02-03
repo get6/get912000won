@@ -14,7 +14,8 @@ import { useRecoilState, useRecoilValue } from "recoil"
 
 export default function CumulativeTimeInput() {
   const searchParams = useSearchParams()
-  const [hours, setHours] = useRecoilState(cumulativeHoursState)
+  const [cumulativeHours, setCumulativeHours] =
+    useRecoilState(cumulativeHoursState)
   const finishTime = useRecoilValue(finishTimeState)
 
   const params = new URLSearchParams(searchParams)
@@ -22,13 +23,13 @@ export default function CumulativeTimeInput() {
 
   useEffect(() => {
     if (cumulativeTime) {
-      const test = Number(cumulativeTime)
-      if (isFinite(test) && test >= 0) {
-        if (test > finishTime) setHours(Number(finishTime))
-        else setHours(Number(cumulativeTime))
+      const hours = Number(cumulativeTime)
+      if (isFinite(hours) && hours >= 0) {
+        if (hours > finishTime) setCumulativeHours(Number(finishTime))
+        else setCumulativeHours(Number(cumulativeTime))
       }
     }
-  }, [cumulativeTime, finishTime, setHours])
+  }, [cumulativeTime, finishTime, setCumulativeHours])
 
   return (
     <div className="flex flex-col gap-2">
@@ -47,7 +48,7 @@ export default function CumulativeTimeInput() {
       <NumberInput
         id="cumulativeTime"
         placeholder="누적 시간"
-        value={hours}
+        value={cumulativeHours}
         min={0}
         max={finishTime}
         onChange={(e) => {
@@ -56,7 +57,7 @@ export default function CumulativeTimeInput() {
           if (value < 0) value = 0
           if (value > finishTime) value = finishTime
 
-          setHours(value)
+          setCumulativeHours(value)
         }}
       />
 
