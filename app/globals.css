@@ -10,6 +10,10 @@
   .unselected-button {
     @apply text-gray-900 hover:bg-gray-300 dark:text-gray-300 hover:dark:bg-gray-500;
   }
+
+  .deselected-button {
+    @apply border bg-white text-gray-900 hover:bg-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 hover:dark:bg-gray-500;
+  }
 }
 
 @layer utilities {

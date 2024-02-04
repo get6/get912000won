@@ -75,7 +75,7 @@ export default function SimpleCalendar() {
         </button>
         <button
           onClick={() => setSelectedDates([])}
-          className="unselected-button mx-2 flex h-9 w-28 items-center justify-center rounded-lg bg-gray-200 dark:bg-gray-700"
+          className="deselected-button mx-2 flex h-9 w-28 items-center justify-center rounded-lg"
         >
           모든 날 선택 해제
         </button>
