@@ -25,7 +25,10 @@ export default function CheckBox({
         onChange={onChange}
         checked={checked}
       />
-      <label htmlFor={id} className="me-1 ms-1 text-sm font-medium">
+      <label
+        htmlFor={id}
+        className="ms-2 select-none text-sm font-medium text-gray-900 dark:text-gray-300"
+      >
         {label}
       </label>
     </div>

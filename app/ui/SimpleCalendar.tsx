@@ -78,7 +78,7 @@ export default function SimpleCalendar() {
       <CheckBox
         id="all-dates-select"
         className="justify-end pb-2 pr-2"
-        label="모든 날 선택하기"
+        label="모든 날짜 선택"
         checked={selectedDates.length === availableDates.length}
         onChange={() => {
           if (selectedDates.length === availableDates.length) {
