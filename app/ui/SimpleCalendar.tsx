@@ -9,6 +9,7 @@ import {
 import { format, getDay, isSameDay, isWeekend } from "date-fns"
 import { isMobile } from "react-device-detect"
 import { useRecoilState, useRecoilValue } from "recoil"
+import CheckBox from "./CheckBox"
 
 function classNames(...classes: (string | boolean)[]) {
   return classes.filter(Boolean).join(" ")
@@ -74,22 +75,21 @@ export default function SimpleCalendar() {
 
   return (
     <div>
-      <div className="flex justify-center pb-5 text-xs font-semibold">
-        <button
-          onClick={() => setSelectedDates(availableDates)}
-          className="selected-button mx-2 flex h-9 w-28 items-center justify-center rounded-lg"
-        >
-          모든 날 선택
-        </button>
-        <button
-          onClick={() => setSelectedDates([])}
-          className="deselected-button mx-2 flex h-9 w-28 items-center justify-center rounded-lg"
-        >
-          모든 날 선택 해제
-        </button>
-      </div>
+      <CheckBox
+        id="all-dates-select"
+        className="justify-end pb-2 pr-2"
+        label="모든 날 선택하기"
+        checked={selectedDates.length === availableDates.length}
+        onChange={() => {
+          if (selectedDates.length === availableDates.length) {
+            setSelectedDates([])
+          } else {
+            setSelectedDates(availableDates)
+          }
+        }}
+      />
       <div className="for-mobile max-w-sm rounded-lg bg-gray-50 p-3 py-8 shadow-lg dark:bg-gray-700">
-        <h2 className="flex-auto text-center text-gray-900 dark:text-white">
+        <h2 className="flex-auto text-center font-medium text-gray-900 dark:text-white">
           🗓️ {format(lastDayOfMonth, "M")}월 남은 날 {availableDates.length}일
         </h2>
         <div className="mt-8 grid grid-cols-7 text-center">

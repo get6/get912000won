@@ -14,6 +14,10 @@
   .deselected-button {
     @apply border bg-white text-gray-900 hover:bg-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 hover:dark:bg-gray-500;
   }
+
+  .checkbox {
+    @apply rounded border-gray-300 bg-gray-50 text-amber-300 focus:ring-2 focus:ring-blue-400 dark:border-gray-600 dark:bg-gray-700 dark:text-blue-600 dark:ring-offset-gray-800 dark:focus:ring-cyan-600;
+  }
 }
 
 @layer utilities {
