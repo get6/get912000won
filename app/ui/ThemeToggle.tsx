@@ -1,25 +1,42 @@
 "use client"
 
-import { FaceSmileIcon } from "@heroicons/react/16/solid"
-import { SunIcon, MoonIcon } from "@heroicons/react/24/outline"
+import {
+  SunIcon,
+  MoonIcon,
+  StarIcon,
+  ArrowPathIcon,
+} from "@heroicons/react/24/outline"
 import { useTheme } from "next-themes"
+import { useEffect, useState } from "react"
 
 function ToggleIcon() {
-  const { systemTheme, theme, setTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme()
+  const [isMount, setMount] = useState(false)
 
-  const currentTheme = theme === "system" ? systemTheme : theme
+  useEffect(() => {
+    setMount(true)
+  }, [])
 
-  return (
-    <button
-      onClick={() => setTheme(currentTheme === "dark" ? "light" : "dark")}
-    >
-      {currentTheme === "dark" ? (
-        <MoonIcon className="h-6 w-6 hover:cursor-pointer dark:text-gray-400" />
-      ) : (
-        <SunIcon className="h-6 w-6 hover:cursor-pointer dark:text-gray-400" />
-      )}
-    </button>
-  )
+  if (!isMount)
+    return (
+      <ArrowPathIcon className="h-6 w-6 hover:cursor-pointer dark:text-gray-400" />
+    )
+
+  if (resolvedTheme === "dark") {
+    return (
+      <MoonIcon
+        onClick={() => setTheme("light")}
+        className="h-6 w-6 hover:cursor-pointer dark:text-gray-400"
+      />
+    )
+  } else {
+    return (
+      <SunIcon
+        onClick={() => setTheme("dark")}
+        className="h-6 w-6 hover:cursor-pointer dark:text-gray-400"
+      />
+    )
+  }
 }
 
 export default function ThemeToggle() {
