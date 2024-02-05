@@ -6,10 +6,10 @@ import {
   lastDayOfMonthState,
   selectedDatesState,
 } from "@/app/states/days-of-month-state"
+import CheckBox from "@/app/ui/CheckBox"
 import { format, getDay, isSameDay, isWeekend } from "date-fns"
 import { isMobile } from "react-device-detect"
 import { useRecoilState, useRecoilValue } from "recoil"
-import CheckBox from "./CheckBox"
 
 function classNames(...classes: (string | boolean)[]) {
   return classes.filter(Boolean).join(" ")
@@ -74,25 +74,13 @@ export default function SimpleCalendar() {
   }
 
   return (
-    <div>
-      <CheckBox
-        id="all-dates-select"
-        className="justify-end pb-2 pr-2"
-        label="모든 날짜 선택"
-        checked={selectedDates.length === availableDates.length}
-        onChange={() => {
-          if (selectedDates.length === availableDates.length) {
-            setSelectedDates([])
-          } else {
-            setSelectedDates(availableDates)
-          }
-        }}
-      />
-      <div className="for-mobile max-w-sm rounded-lg bg-gray-50 p-3 py-8 shadow-lg dark:bg-gray-700">
+    <>
+      <div className="for-mobile max-w-sm rounded-lg bg-gray-50 px-4 pb-4 pt-6 shadow-lg dark:bg-gray-700">
         <h2 className="flex-auto text-center font-medium text-gray-900 dark:text-white">
-          🗓️ {format(lastDayOfMonth, "M")}월 남은 날 {availableDates.length}일
+          🗓️ {format(lastDayOfMonth, "M")}월, 남은 날 {availableDates.length}일
         </h2>
-        <div className="mt-8 grid grid-cols-7 text-center">
+
+        <div className="mt-4 grid grid-cols-7 text-center">
           {weekDays.map((day, index) => (
             <div
               key={index}
@@ -136,7 +124,20 @@ export default function SimpleCalendar() {
             </div>
           ))}
         </div>
+        <CheckBox
+          id="all-dates-select"
+          className="mr-1 mt-4 flex justify-end"
+          label="모든 날짜 선택"
+          checked={selectedDates.length === availableDates.length}
+          onChange={() => {
+            if (selectedDates.length === availableDates.length) {
+              setSelectedDates([])
+            } else {
+              setSelectedDates(availableDates)
+            }
+          }}
+        />
       </div>
-    </div>
+    </>
   )
 }
