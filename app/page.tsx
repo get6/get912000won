@@ -4,6 +4,7 @@ import MyInfo from "@/app/ui/home/MyInfo"
 import MyResult from "@/app/ui/home/MyResult"
 import TargetTimeInput from "@/app/ui/home/TargetTimeInput"
 import SimpleCalendar from "./ui/SimpleCalendar"
+import { Suspense } from "react"
 
 export default function Home() {
   const desc = [
@@ -34,7 +35,9 @@ export default function Home() {
             </div>
             <Line />
             <div className="flex flex-col gap-4">
-              <CumulativeTimeInput />
+              <Suspense>
+                <CumulativeTimeInput />
+              </Suspense>
               <TargetTimeInput />
             </div>
           </div>
