@@ -33,8 +33,7 @@ export default function SimpleCalendar() {
     "col-start-7",
   ]
 
-  //let touchPointX: number = 0
-  //let touchPointY: number = 0
+  let isTouchMove: boolean = false
 
   const isAvailableDay = (day: Date) => {
     return availableDates.includes(day)
@@ -56,11 +55,10 @@ export default function SimpleCalendar() {
 
   const datePickMobile = (day: Date, e: any) => {
     if (!isMobile || !isAvailableDay(day)) return
-    //if (
-    //  touchPointX !== e.changedTouches[0].clientX ||
-    //  touchPointY !== e.changedTouches[0].clientY
-    //)
-    //  return
+    if (isTouchMove) {
+      isTouchMove = false
+      return
+    }
     const dates = selectedDates.filter((e) => !isSameDay(e, day))
     const alreadyPickedDate = selectedDates.find((e) => isSameDay(e, day))
     if (alreadyPickedDate) {
@@ -101,11 +99,9 @@ export default function SimpleCalendar() {
             >
               <button
                 disabled={!isAvailableDay(day)}
-                //onTouchStart={(e) => {
-                //  touchPointX = e.touches[0].clientX
-                //  touchPointY = e.touches[0].clientY
-                //}}
+                onTouchMove={() => (isTouchMove = true)}
                 onTouchEnd={(e) => datePickMobile(day, e)}
+                onScroll={() => alert("scrolled!")}
                 onClick={() => datePick(day)}
                 className={classNames(
                   !isAvailableDay(day) && "disabled: cursor-default opacity-30",
